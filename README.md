@@ -1,110 +1,111 @@
 # Meshtastic Info Bot
 
-Ein einfacher Bot, der Nachrichten von einem Meshtastic-Gerät über die TCP-Schnittstelle empfängt und darauf reagiert.
+A simple bot that receives messages from a Meshtastic device via the TCP interface and responds to them.
 
-## Überblick
+## Overview
 
-Dieses Projekt besteht aus zwei Python-Skripten:
-- **Meshbot.py**: Hört auf Nachrichten, die vom Meshtastic-Gerät über das Netzwerk gesendet werden, und verarbeitet sie.
-- **commands.py**: Definiert Befehle, auf die der Bot reagieren kann.
+This project consists of two Python scripts:
+- **Meshbot.py**: Listens for messages sent by the Meshtastic device over the network and processes them.
+- **commands.py**: Defines commands the bot can respond to.
 
 ### Features
-- Empfang von Nachrichten über die Meshtastic TCP-Schnittstelle
-- Reaktion auf benutzerdefinierte Befehle
+- Receive messages via the Meshtastic TCP interface
+- Respond to custom commands
 
-## Voraussetzungen
+## Requirements
 
-Bevor du startest, stelle sicher, dass die folgenden Anforderungen erfüllt sind:
+Before starting, make sure the following requirements are met:
 
 1. **Hardware**
-   - Ein Heltec V3-Gerät oder ein anderes Meshtastic-kompatibles Gerät.
-   - Ein Netzwerk, über das dein Rechner und das Meshtastic-Gerät verbunden sind.
+   - A Heltec V3 device or another Meshtastic-compatible device.
+   - A network that connects your computer and the Meshtastic device.
 
 2. **Software**
-   - Python 3.7 oder höher
-   - Die folgenden Python-Pakete:
+   - Python 3.7 or higher
+   - The following Python packages:
      - `meshtastic`
      - `pubsub`
 
 ## Installation
 
-### 1. Repository klonen
-Lade die Projektdateien herunter, indem du dieses Repository klonst:
+### 1. Clone the Repository
+Download the project files by cloning this repository:
 
 ```bash
 git clone <repository-url>
 cd <repository-folder>
 ```
 
-### 2. Abhängigkeiten installieren
-Erstelle eine virtuelle Umgebung und installiere die erforderlichen Pakete:
+### 2. Install Dependencies
+Create a virtual environment and install the required packages:
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # Für Linux/Mac
-venv\Scripts\activate   # Für Windows
+source venv/bin/activate  # For Linux/Mac
+venv\Scripts\activate   # For Windows
 
 pip install meshtastic pubsub
 ```
 
-### 3. Skript anpassen
-Bearbeite die Datei `Meshbot.py` und ersetze die Platzhalter-IP (`192.168.xxx.xx`) durch die IP-Adresse deines Meshtastic-Geräts.
+### 3. Adjust the Script
+Edit the file `Meshbot.py` and replace the placeholder IP (`192.168.xxx.xx`) with the IP address of your Meshtastic device.
 
-## Verwendung
+## Usage
 
-### 1. Bot starten
-Führe das Hauptskript aus:
+### 1. Start the Bot
+Run the main script:
 
 ```bash
 python Meshbot.py
 ```
 
-Wenn alles korrekt konfiguriert ist, siehst du eine Meldung, dass der Bot mit dem Meshtastic-Gerät verbunden ist und auf Nachrichten wartet.
+If everything is configured correctly, you will see a message indicating that the bot is connected to the Meshtastic device and is listening for messages.
 
-### 2. Nachrichten senden
-Sende eine Nachricht von deinem Meshtastic-Gerät mit einem der definierten Befehle. Beispiel:
-
-```
-!hallo
-```
-
-Der Bot wird darauf mit einer Antwort reagieren:
+### 2. Send Messages
+Send a message from your Meshtastic device using one of the defined commands. Example:
 
 ```
-Hallo, ich bin der Meshtastic Info Bot!
+!hello
 ```
 
-## Befehle
-Die verfügbaren Befehle werden im Dictionary `COMMANDS` in der Datei `commands.py` definiert. Aktuell gibt es folgende Befehle:
+The bot will respond with:
 
-| Befehl     | Beschreibung                            |
-|------------|----------------------------------------|
-| `!hallo`   | Der Bot antwortet mit einer Begrüßung. |
+```
+Hello, I am the Meshtastic Info Bot!
+```
 
-Du kannst weitere Befehle hinzufügen, indem du das Dictionary in `commands.py` erweiterst.
+## Commands
+The available commands are defined in the `COMMANDS` dictionary in the file `commands.py`. Currently, the following commands are available:
 
-## Anpassung
+| Command     | Description                        |
+|-------------|------------------------------------|
+| `!hello`    | The bot responds with a greeting.  |
 
-### Weitere Befehle hinzufügen
-1. Definiere eine neue Funktion in `commands.py`. Beispiel:
+You can add more commands by extending the `commands.py` dictionary.
+
+## Customization
+
+### Adding More Commands
+1. Define a new function in `commands.py`. Example:
 
     ```python
     def weather_command(sender_id, interface):
-        interface.sendText("Das aktuelle Wetter ist sonnig!", destinationId=sender_id)
+        interface.sendText("The current weather is sunny!", destinationId=sender_id)
     ```
 
-2. Füge den neuen Befehl dem Dictionary `COMMANDS` hinzu:
+2. Add the new command to the `COMMANDS` dictionary:
 
     ```python
     COMMANDS = {
-        "!wetter": weather_command,
-        # weitere Befehle...
+        "!weather": weather_command,
+        # additional commands...
     }
     ```
 
-## Lizenz
+## License
 
-Dieses Projekt steht unter der MIT-Lizenz. Weitere Informationen findest du in der Datei `LICENSE`.
+This project is licensed under the MIT License. For more details, see the `LICENSE` file.
 
-## Autor
-- Erstellt von **Pilotkosinus** 
+## Author
+- Created by **Pilotkosinus** 
+
